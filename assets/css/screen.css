@@ -474,7 +474,7 @@ margin on the iframe, cause it breaks stuff. */
     display: table;
     width: 100%;
     margin-bottom: 5rem;
-    text-align: right;
+    text-align: left;
     background: #222 no-repeat center center;
     background-size: cover;
     overflow: hidden;
@@ -628,6 +628,7 @@ margin on the iframe, cause it breaks stuff. */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.2)), color-stop(100%,rgba(0,0,0,0)));
     background: -webkit-linear-gradient(top, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%);
     background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0) 100%);
+
 }
 .no-cover .main-nav.overlay,
 .no-cover .back-button,
@@ -681,15 +682,16 @@ margin on the iframe, cause it breaks stuff. */
 .no-cover.main-header {
     min-height: 160px;
     max-height: 40%;
-    background: #f5f8fa;
+    background: #000;
+    box-shadow: 0px 4px 30px -6px rgba(0,0,0,0.75);
 }
 
 .no-cover .page-title {
-    color: rgba(0,0,0,0.8);
+    color: rgba(255,255,255,1);
 }
 
 .no-cover .page-description {
-    color: rgba(0,0,0,0.5);
+    color: rgba(225,225,225,1);
 }
 
 .no-cover .main-nav.overlay .back-button,
