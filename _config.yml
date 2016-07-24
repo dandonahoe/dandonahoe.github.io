@@ -8,9 +8,9 @@ logo: false
 paginate: 15
 baseurl: /
 domain_name: 'http://dandonahoe.com'
-google_analytics: 'UA-XXXXXXXX-X'
+google_analytics: 'UA-47127035-8'
 gems: [jekyll-paginate]
 
 # Details for the RSS feed generator
-url:            'blog url'
+url:            'http://dandonahoe.com'
 author:         'Dan Donahoe'
