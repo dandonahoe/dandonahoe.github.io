@@ -65,15 +65,40 @@ Deploying your application and ensuring it runs smoothly in production is just a
 
 Understanding how these components interact is key to mastering web development. Here's a high-level overview of the architecture:
 
+2
 <div class="mermaid">
-graph TD;
-    User -->|HTTP Request| Frontend[Frontend - React/NextJS]
-    Frontend -->|API Call| Backend[Backend - Node.js/Express.js]
-    Backend -->|Database Query| Database[Database - PostgreSQL/MySQL/Redis]
-    Database -->|Data| Backend
-    Backend -->|API Response| Frontend
-    Frontend -->|HTTP Response| User
-<div>
+%% Example of a complex Mermaid markdown diagram
+graph TD
+    A[Start Process] --> B[Gather Requirements]
+    B --> C[Design System]
+    C --> D{Decision: Feasible?}
+    D -->|Yes| E[Develop Prototype]
+    D -->|No| F[Reevaluate Requirements]
+    F --> B
+    E --> G[Test Prototype]
+    G --> H{Decision: Successful?}
+    H -->|Yes| I[Deploy System]
+    H -->|No| J[Fix Issues]
+    J --> G
+    I --> K[End Process]
+
+%% Subprocess example
+subgraph Subprocess A
+    direction TB
+    A1[Subprocess Start] --> A2[Perform Task A]
+    A2 --> A3{Decision: Task A Successful?}
+    A3 -->|Yes| A4[Perform Task B]
+    A3 -->|No| A5[Retry Task A]
+    A5 --> A2
+    A4 --> A6[Subprocess End]
+end
+
+%% Integrating subprocess into the main process
+E --> L[Subprocess A Integration]
+L --> M[Continue Development]
+M --> G
+
+</div>
 
 ## Let's Get Started
 
