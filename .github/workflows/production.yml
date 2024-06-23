@@ -7,6 +7,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    permissions:
+        # Allows the job to write back to 
+        # the repository, necessary for actions 
+        # like pushing commits or tags
+        contents: write  
+
+    # Specify the environment this job is running in
+    environment: Production
+
+    # Environment variables, with secrets injected
+    env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    strategy:
+            # Define a matrix to run the job 
+            # with different versions of Node.js
+            matrix:
+                node-version: [20.x]  
 
     steps:
       - name: Checkout
@@ -22,7 +41,33 @@ jobs:
       - name: Build with Jekyll
         run: bundle exec jekyll build
 
-      - name: Run Scripts
-        run: |
-          npm ci
-          npm run ci
+      # Cache npm dependencies
+      - uses: actions/cache@v3
+        with:
+            path: |
+                ~/.npm
+                **/node_modules
+
+            # Generate a new cache whenever packages or source files change.
+            key: ${{ runner.os }}-blog-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+
+            # If source files changed but packages didn't, rebuild from a prior cache.
+            restore-keys: |
+                ${{ runner.os }}-blog-${{ hashFiles('**/package-lock.json') }}-
+
+      # Checkout the repository
+      - uses: actions/checkout@v3
+
+      # Setup Node.js environment
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+            node-version: ${{ matrix.node-version }}
+
+      # Verify Node.js version
+      - run: node -v
+
+      # Update and release
+      - run: npm ci
+      - run: npm run ci-semantic-release
+
